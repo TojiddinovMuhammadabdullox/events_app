@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "862337765988",
+    "project_id": "minimmal-events-app-flutter",
+    "storage_bucket": "minimmal-events-app-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862337765988:android:63b0994a8b965d4aa68571",
+        "android_client_info": {
+          "package_name": "com.example.events_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYZw2l4_ZYqXuCRejau37a0RnW0_-U93U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
