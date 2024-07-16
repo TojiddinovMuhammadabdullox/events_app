@@ -1,5 +1,4 @@
 import 'package:events_app/providers/user_provider.dart';
-import 'package:events_app/views/main.pages/home_page.dart';
 import 'package:events_app/views/events_page.dart/my_events.dart';
 import 'package:events_app/views/main.pages/profile_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AppDrawer extends StatelessWidget {
-  const AppDrawer({Key? key}) : super(key: key);
+  const AppDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
