@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 class DateTextField extends StatelessWidget {
+  final Function(String?) onSaved;
+
+  const DateTextField({required this.onSaved, Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       decoration: InputDecoration(
         hintText: "Kuni",
         suffixIcon: IconButton(
@@ -12,6 +16,7 @@ class DateTextField extends StatelessWidget {
               context: context,
               firstDate: DateTime(2000),
               lastDate: DateTime(2500),
+              initialDate: DateTime.now(),
             );
           },
           icon: const Icon(
@@ -32,6 +37,7 @@ class DateTextField extends StatelessWidget {
           borderSide: const BorderSide(color: Color(0xffE1691B), width: 5),
         ),
       ),
+      onSaved: onSaved,
     );
   }
 }

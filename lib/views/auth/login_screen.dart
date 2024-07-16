@@ -1,6 +1,7 @@
-import 'package:events_app/services/authentication/auth_service.dart';
+import 'package:events_app/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -55,6 +56,9 @@ class _LoginPageState extends State<LoginPage> {
                       _passwordController.text,
                     );
                     if (user != null) {
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      prefs.setBool('isLoggedIn', true);
                       Navigator.pushReplacementNamed(context, '/home');
                     }
                   }

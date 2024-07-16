@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
 class DescriptionTextField extends StatelessWidget {
+  final Function(String?) onSaved;
+
+  const DescriptionTextField({required this.onSaved, Key? key})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       maxLines: 5,
       decoration: InputDecoration(
         hintText: "Tadbir haqida ma'lumot",
@@ -20,6 +25,7 @@ class DescriptionTextField extends StatelessWidget {
           borderSide: const BorderSide(color: Color(0xffE1691B), width: 5),
         ),
       ),
+      onSaved: onSaved,
     );
   }
 }

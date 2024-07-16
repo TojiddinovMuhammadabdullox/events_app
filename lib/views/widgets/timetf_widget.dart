@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 class TimeTextField extends StatelessWidget {
+  final Function(String?) onSaved;
+
+  const TimeTextField({required this.onSaved, Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       decoration: InputDecoration(
         hintText: "Vaqt",
         suffixIcon: IconButton(
@@ -31,6 +35,7 @@ class TimeTextField extends StatelessWidget {
           borderSide: const BorderSide(color: Color(0xffE1691B), width: 5),
         ),
       ),
+      onSaved: onSaved,
     );
   }
 }

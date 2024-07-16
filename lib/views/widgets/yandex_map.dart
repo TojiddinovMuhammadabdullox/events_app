@@ -31,17 +31,17 @@ class _CustomYandexMapState extends State<CustomYandexMap> {
               children: [
                 FloatingActionButton(
                   onPressed: _zoomIn,
-                  child: Icon(Icons.zoom_in),
+                  child: const Icon(Icons.zoom_in),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 FloatingActionButton(
                   onPressed: _zoomOut,
-                  child: Icon(Icons.zoom_out),
+                  child: const Icon(Icons.zoom_out),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 FloatingActionButton(
                   onPressed: _getCurrentLocation,
-                  child: Icon(Icons.my_location),
+                  child: const Icon(Icons.my_location),
                 ),
               ],
             ),

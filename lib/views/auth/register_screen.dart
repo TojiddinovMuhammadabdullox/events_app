@@ -1,6 +1,7 @@
-import 'package:events_app/services/authentication/auth_service.dart';
+import 'package:events_app/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -71,6 +72,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       _passwordController.text,
                     );
                     if (user != null) {
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      prefs.setBool('isLoggedIn', true);
                       Navigator.pushReplacementNamed(context, '/home');
                     }
                   }
