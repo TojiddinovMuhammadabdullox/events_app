@@ -28,8 +28,10 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.push(context,
-                  CupertinoPageRoute(builder: (ctx) => NotificationPage()));
+              Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                      builder: (ctx) => const NotificationPage()));
             },
             icon: Image.asset(
               "assets/icons/notif_icon.png",

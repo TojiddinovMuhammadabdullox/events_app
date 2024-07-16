@@ -1,4 +1,4 @@
-import 'package:events_app/views/events_page.dart/event_details.dart';
+import 'package:events_app/views/events_page/event_details.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -21,12 +21,12 @@ class NotificationPage extends StatelessWidget {
                 Navigator.push(context,
                     CupertinoPageRoute(builder: (ctx) => const EventDetails()));
               },
-              child: SizedBox(
+              child: const SizedBox(
                 height: 170,
                 child: Card(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 10, left: 10),
-                    child: const Column(
+                    padding: EdgeInsets.only(top: 10, left: 10),
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(

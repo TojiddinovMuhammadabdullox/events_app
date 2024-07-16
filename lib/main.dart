@@ -1,7 +1,7 @@
 // lib/main.dart
 import 'package:events_app/providers/user_provider.dart';
-import 'package:events_app/views/auth/login_screen.dart';
-import 'package:events_app/views/auth/register_screen.dart';
+import 'package:events_app/views/authentication/login_screen.dart';
+import 'package:events_app/views/authentication/register_screen.dart';
 import 'package:events_app/views/main.pages/home_page.dart';
 import 'package:events_app/views/widgets/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -14,12 +14,14 @@ void main() async {
   runApp(
     ChangeNotifierProvider(
       create: (context) => UserProvider(),
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -1,4 +1,4 @@
-import 'package:events_app/views/auth/login_screen.dart';
+import 'package:events_app/views/authentication/login_screen.dart';
 import 'package:events_app/views/main.pages/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

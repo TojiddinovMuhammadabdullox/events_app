@@ -1,5 +1,5 @@
 import 'package:events_app/providers/user_provider.dart';
-import 'package:events_app/views/events_page.dart/my_events.dart';
+import 'package:events_app/views/events_page/my_events.dart';
 import 'package:events_app/views/main.pages/profile_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

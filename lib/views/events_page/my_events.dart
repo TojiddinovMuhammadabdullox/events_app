@@ -1,8 +1,8 @@
-import 'package:events_app/views/events_page.dart/add_event.dart';
-import 'package:events_app/views/events_page.dart/all_events.dart';
-import 'package:events_app/views/events_page.dart/canceled_events.dart';
-import 'package:events_app/views/events_page.dart/near_events.dart';
-import 'package:events_app/views/events_page.dart/participated_events.dart';
+import 'package:events_app/views/events_page/add_event.dart';
+import 'package:events_app/views/events_page/all_events.dart';
+import 'package:events_app/views/events_page/canceled_events.dart';
+import 'package:events_app/views/events_page/near_events.dart';
+import 'package:events_app/views/events_page/participated_events.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
