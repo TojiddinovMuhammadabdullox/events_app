@@ -62,36 +62,33 @@ class _CustomYandexMapState extends State<CustomYandexMap> {
   void _getCurrentLocation() async {
     if (await Permission.location.request().isGranted) {
       var cameraPosition = await _controller.getCameraPosition();
-      if (cameraPosition != null) {
-        var userLocation = cameraPosition.target;
+      var userLocation = cameraPosition.target;
 
-        var placemark = PlacemarkMapObject(
-          mapId: MapObjectId('user_location'),
-          point: userLocation,
-          icon: PlacemarkIcon.single(
-            PlacemarkIconStyle(
-              image:
-                  BitmapDescriptor.fromAssetImage("assets/icons/location.png"),
-              scale: 0.2,
-            ),
+      var placemark = PlacemarkMapObject(
+        mapId: MapObjectId('user_location'),
+        point: userLocation,
+        icon: PlacemarkIcon.single(
+          PlacemarkIconStyle(
+            image: BitmapDescriptor.fromAssetImage("assets/icons/location.png"),
+            scale: 0.2,
           ),
-        );
+        ),
+      );
 
-        setState(() {
-          _mapObjects.add(placemark);
-        });
+      setState(() {
+        _mapObjects.add(placemark);
+      });
 
-        _controller.moveCamera(
-          CameraUpdate.newCameraPosition(
-            CameraPosition(
-              target: userLocation,
-              zoom: 16,
-            ),
+      _controller.moveCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+            target: userLocation,
+            zoom: 16,
           ),
-          animation:
-              const MapAnimation(type: MapAnimationType.smooth, duration: 2.0),
-        );
-      }
+        ),
+        animation:
+            const MapAnimation(type: MapAnimationType.smooth, duration: 2.0),
+      );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

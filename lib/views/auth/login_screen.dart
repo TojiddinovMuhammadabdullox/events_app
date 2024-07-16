@@ -59,6 +59,8 @@ class _LoginPageState extends State<LoginPage> {
                       SharedPreferences prefs =
                           await SharedPreferences.getInstance();
                       prefs.setBool('isLoggedIn', true);
+                      prefs.setString(
+                          'userEmail', user.email ?? ''); // Save email
                       Navigator.pushReplacementNamed(context, '/home');
                     }
                   }

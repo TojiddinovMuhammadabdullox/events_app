@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
 
 class TimeTextField extends StatelessWidget {
-  final Function(String?) onSaved;
+  final TimeOfDay? selectedTime;
+  final Function(TimeOfDay) onTimeSelected;
 
-  const TimeTextField({required this.onSaved, Key? key}) : super(key: key);
+  const TimeTextField({
+    required this.onTimeSelected,
+    this.selectedTime,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: true,
       decoration: InputDecoration(
-        hintText: "Vaqt",
+        hintText: selectedTime != null
+            ? "${selectedTime!.hour}:${selectedTime!.minute}"
+            : "Vaqt",
         suffixIcon: IconButton(
-          onPressed: () {
-            showTimePicker(
+          onPressed: () async {
+            TimeOfDay? pickedTime = await showTimePicker(
               context: context,
-              initialTime: TimeOfDay.now(),
+              initialTime: selectedTime ?? TimeOfDay.now(),
             );
+            if (pickedTime != null) {
+              onTimeSelected(pickedTime);
+            }
           },
           icon: const Icon(
             Icons.access_time_outlined,
@@ -35,7 +46,6 @@ class TimeTextField extends StatelessWidget {
           borderSide: const BorderSide(color: Color(0xffE1691B), width: 5),
         ),
       ),
-      onSaved: onSaved,
     );
   }
 }

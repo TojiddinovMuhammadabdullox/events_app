@@ -1,5 +1,6 @@
 import 'package:events_app/models/event.dart';
 import 'package:events_app/services/firestore_service.dart';
+import 'package:events_app/views/main.pages/notification_page.dart';
 import 'package:events_app/views/widgets/app_drawer.dart';
 import 'package:events_app/views/widgets/custom_carousel.dart';
 import 'package:events_app/views/widgets/search_textfield.dart';
@@ -26,7 +27,10 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  CupertinoPageRoute(builder: (ctx) => NotificationPage()));
+            },
             icon: Image.asset(
               "assets/icons/notif_icon.png",
               width: 25,
@@ -44,9 +48,7 @@ class HomePage extends StatelessWidget {
               child: Text(
                 "Yaqin 7 kun ichida",
                 style: TextStyle(
-                  fontSize: 22,
-                  fontStyle: FontStyle.italic,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
                 ),
               ),
             ),
@@ -113,21 +115,18 @@ class HomePage extends StatelessWidget {
                                     color: Colors.grey,
                                   ),
                                 ),
-                                const SizedBox(height: 10),
                                 Text(
                                   event.description,
                                   style: const TextStyle(
                                     fontSize: 14,
-                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ],
                             ),
                           ),
                           IconButton(
-                            onPressed: () {
-                              // Implement favorite functionality if needed
-                            },
+                            onPressed: () {},
                             icon: const Icon(
                               CupertinoIcons.heart_circle_fill,
                               color: Colors.grey,

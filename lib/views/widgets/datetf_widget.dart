@@ -1,23 +1,35 @@
+// lib/views/widgets/datetf_widget.dart
 import 'package:flutter/material.dart';
 
 class DateTextField extends StatelessWidget {
-  final Function(String?) onSaved;
+  final DateTime? selectedDate;
+  final Function(DateTime) onDateSelected;
 
-  const DateTextField({required this.onSaved, Key? key}) : super(key: key);
+  const DateTextField({
+    required this.onDateSelected,
+    this.selectedDate,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: true,
       decoration: InputDecoration(
-        hintText: "Kuni",
+        hintText: selectedDate != null
+            ? "${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}"
+            : "Kuni",
         suffixIcon: IconButton(
-          onPressed: () {
-            showDatePicker(
+          onPressed: () async {
+            DateTime? pickedDate = await showDatePicker(
               context: context,
               firstDate: DateTime(2000),
               lastDate: DateTime(2500),
-              initialDate: DateTime.now(),
+              initialDate: selectedDate ?? DateTime.now(),
             );
+            if (pickedDate != null) {
+              onDateSelected(pickedDate);
+            }
           },
           icon: const Icon(
             Icons.calendar_month,
@@ -37,7 +49,6 @@ class DateTextField extends StatelessWidget {
           borderSide: const BorderSide(color: Color(0xffE1691B), width: 5),
         ),
       ),
-      onSaved: onSaved,
     );
   }
 }

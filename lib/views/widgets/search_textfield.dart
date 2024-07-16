@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 class SearchTextField extends StatelessWidget {
-  const SearchTextField({Key? key}) : super(key: key);
+  const SearchTextField({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: TextField(
         decoration: InputDecoration(
           hintText: "Tadbirlarni izlash..",
@@ -21,15 +21,15 @@ class SearchTextField extends StatelessWidget {
             onPressed: () {},
           ),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(8.0),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
-            borderSide: const BorderSide(color: Color(0xffE1691B), width: 5),
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: const BorderSide(color: Color(0xffE1691B), width: 2),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
-            borderSide: const BorderSide(color: Color(0xffE1691B), width: 5),
+            borderSide: const BorderSide(color: Color(0xffE1691B), width: 2),
           ),
         ),
       ),

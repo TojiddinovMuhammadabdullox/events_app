@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class NameTextField extends StatelessWidget {
   final Function(String?) onSaved;
 
-  const NameTextField({required this.onSaved, Key? key}) : super(key: key);
+  const NameTextField({required this.onSaved, super.key});
 
   @override
   Widget build(BuildContext context) {

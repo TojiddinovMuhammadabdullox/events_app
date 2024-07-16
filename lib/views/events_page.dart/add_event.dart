@@ -1,12 +1,13 @@
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:events_app/views/widgets/datetf_widget.dart';
 import 'package:events_app/views/widgets/descriptiontf_widget.dart';
 import 'package:events_app/views/widgets/nametf_widget.dart';
 import 'package:events_app/views/widgets/timetf_widget.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 
 class AddEvents extends StatefulWidget {
   const AddEvents({super.key});
@@ -17,13 +18,11 @@ class AddEvents extends StatefulWidget {
 
 class _AddEventsState extends State<AddEvents> {
   final _formKey = GlobalKey<FormState>();
-  final DateTime selectedDate =
-      DateTime.now(); // Initialize with current date/time
+  DateTime? _selectedDate;
+  TimeOfDay? _selectedTime;
   final ImagePicker _picker = ImagePicker();
   File? _media;
   String? _name;
-  String? _date;
-  String? _time;
   String? _description;
 
   Future<void> _pickMedia(ImageSource source) async {
@@ -53,8 +52,10 @@ class _AddEventsState extends State<AddEvents> {
       // Save event to Firestore
       await FirebaseFirestore.instance.collection('events').add({
         'name': _name,
-        'date': _date,
-        'time': _time,
+        'date': _selectedDate != null ? _selectedDate!.toIso8601String() : null,
+        'time': _selectedTime != null
+            ? '${_selectedTime!.hour}:${_selectedTime!.minute}'
+            : null,
         'description': _description,
         'mediaUrl': mediaUrl,
         'createdAt': Timestamp.now(),
@@ -102,11 +103,21 @@ class _AddEventsState extends State<AddEvents> {
                 ),
                 const SizedBox(height: 20),
                 DateTextField(
-                  onSaved: (value) => _date = value,
+                  selectedDate: _selectedDate,
+                  onDateSelected: (date) {
+                    setState(() {
+                      _selectedDate = date;
+                    });
+                  },
                 ),
                 const SizedBox(height: 20),
                 TimeTextField(
-                  onSaved: (value) => _time = value,
+                  selectedTime: _selectedTime,
+                  onTimeSelected: (time) {
+                    setState(() {
+                      _selectedTime = time;
+                    });
+                  },
                 ),
                 const SizedBox(height: 20),
                 DescriptionTextField(

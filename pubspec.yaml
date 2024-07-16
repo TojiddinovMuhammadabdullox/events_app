@@ -54,6 +54,12 @@ dependencies:
   path: ^1.9.0
   permission_handler: ^11.3.1
   shared_preferences: ^2.2.3
+  flutter_bloc: ^8.1.6
+  bloc: ^8.1.4
+  equatable: ^2.0.5
+  google_fonts: ^6.2.1
+  provider: ^6.1.2
+  flutter_provider: ^2.1.0
   
 dev_dependencies:
   flutter_test:
