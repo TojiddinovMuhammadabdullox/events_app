@@ -1,4 +1,6 @@
 import 'package:events_app/providers/user_provider.dart';
+import 'package:events_app/providers/theme_provider.dart';
+import 'package:events_app/views/events_page/favorites_page.dart';
 import 'package:events_app/views/events_page/my_events.dart';
 import 'package:events_app/views/main.pages/profile_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,8 +38,8 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(CupertinoIcons.tickets),
             title: const Text('Mening tadbirlarim'),
             onTap: () {
-              Navigator.push(
-                  context, CupertinoPageRoute(builder: (ctx) => MyEvents()));
+              Navigator.push(context,
+                  CupertinoPageRoute(builder: (ctx) => const MyEvents()));
             },
           ),
           ListTile(
@@ -45,8 +47,8 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.person_2_outlined),
             title: const Text("Profil Ma'lumotlari"),
             onTap: () {
-              Navigator.push(
-                  context, CupertinoPageRoute(builder: (ctx) => ProfilePage()));
+              Navigator.push(context,
+                  CupertinoPageRoute(builder: (ctx) => const ProfilePage()));
             },
           ),
           ListTile(
@@ -55,14 +57,31 @@ class AppDrawer extends StatelessWidget {
             title: const Text("Tillarni o'zgartirish"),
             onTap: () {},
           ),
+          Consumer<ThemeProvider>(
+            builder: (context, themeProvider, child) {
+              return ListTile(
+                trailing: Switch(
+                  value: themeProvider.isDarkMode,
+                  onChanged: (value) {
+                    themeProvider.toggleTheme();
+                  },
+                ),
+                leading: Image.asset(
+                  "assets/icons/theme_mode.png",
+                  width: 23,
+                ),
+                title: const Text("Tungi / kunduzgi holat"),
+              );
+            },
+          ),
           ListTile(
             trailing: const Icon(Icons.arrow_forward_ios_outlined),
-            leading: Image.asset(
-              "assets/icons/theme_mode.png",
-              width: 23,
-            ),
-            title: const Text("Tungi / kunduzgi holat"),
-            onTap: () {},
+            leading: const Icon(CupertinoIcons.heart_circle_fill),
+            title: const Text("Sevimlilar"),
+            onTap: () {
+              Navigator.push(context,
+                  CupertinoPageRoute(builder: (ctx) => const FavoritesPage()));
+            },
           ),
         ],
       ),

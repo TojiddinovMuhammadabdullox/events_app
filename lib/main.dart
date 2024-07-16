@@ -1,4 +1,4 @@
-// lib/main.dart
+import 'package:events_app/providers/theme_provider.dart';
 import 'package:events_app/providers/user_provider.dart';
 import 'package:events_app/views/authentication/login_screen.dart';
 import 'package:events_app/views/authentication/register_screen.dart';
@@ -12,8 +12,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => UserProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => UserProvider()),
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+      ],
       child: const MyApp(),
     ),
   );
@@ -24,17 +27,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Firebase Auth',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const SplashScreen(),
-      routes: {
-        '/login': (context) => LoginPage(),
-        '/register': (context) => RegisterPage(),
-        '/home': (context) => HomePage(),
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Firebase Auth',
+          theme: themeProvider.isDarkMode ? ThemeData.dark() : ThemeData.light(),
+          home: const SplashScreen(),
+          routes: {
+            '/login': (context) => LoginPage(),
+            '/register': (context) => RegisterPage(),
+            '/home': (context) => HomePage(),
+          },
+        );
       },
     );
   }

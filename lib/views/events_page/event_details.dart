@@ -128,7 +128,7 @@ class EventDetails extends StatelessWidget {
             ),
           ),
           const Padding(
-            padding: const EdgeInsets.only(left: 15),
+            padding: EdgeInsets.only(left: 15),
             child: Text(
               "Tadbir haqida",
               style: TextStyle(
@@ -138,9 +138,9 @@ class EventDetails extends StatelessWidget {
             ),
           ),
           const Padding(
-            padding: const EdgeInsets.only(left: 15),
+            padding: EdgeInsets.only(left: 15),
             child: Text("Description"),
-          )
+          ),
         ],
       ),
     );
