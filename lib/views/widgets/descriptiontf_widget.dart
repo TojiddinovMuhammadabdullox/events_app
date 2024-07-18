@@ -1,4 +1,4 @@
-// lib/views/widgets/descriptiontf_widget.dart
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class DescriptionTextField extends StatelessWidget {
@@ -12,7 +12,7 @@ class DescriptionTextField extends StatelessWidget {
     return TextFormField(
       maxLines: 5,
       decoration: InputDecoration(
-        hintText: "Tadbir haqida ma'lumot",
+        hintText: "tadbir_haqida_malumot".tr(),
         hintStyle: const TextStyle(color: Colors.grey),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),

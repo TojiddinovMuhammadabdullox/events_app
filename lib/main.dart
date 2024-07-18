@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:events_app/providers/favorites_provider.dart';
 import 'package:events_app/providers/theme_provider.dart';
 import 'package:events_app/providers/user_provider.dart';
 import 'package:events_app/views/authentication/login_screen.dart';
@@ -11,13 +13,21 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await EasyLocalization.ensureInitialized();
+
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => UserProvider()),
-        ChangeNotifierProvider(create: (context) => ThemeProvider()),
-      ],
-      child: const MyApp(),
+    EasyLocalization(
+      supportedLocales: [Locale('en'), Locale('uz')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('uz'),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => UserProvider()),
+          ChangeNotifierProvider(create: (context) => ThemeProvider()),
+          ChangeNotifierProvider(create: (context) => FavoritesProvider()),
+        ],
+        child: const MyApp(),
+      ),
     ),
   );
 }
@@ -32,13 +42,17 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Firebase Auth',
-          theme: themeProvider.isDarkMode ? ThemeData.dark() : ThemeData.light(),
+          theme:
+              themeProvider.isDarkMode ? ThemeData.dark() : ThemeData.light(),
           home: const SplashScreen(),
           routes: {
             '/login': (context) => LoginPage(),
             '/register': (context) => RegisterPage(),
-            '/home': (context) => HomePage(),
+            '/home': (context) => const HomePage(),
           },
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
         );
       },
     );

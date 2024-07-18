@@ -1,5 +1,3 @@
-import 'package:events_app/views/events_page/event_details.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NotificationPage extends StatelessWidget {
@@ -17,10 +15,7 @@ class NotificationPage extends StatelessWidget {
         child: Column(
           children: [
             GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    CupertinoPageRoute(builder: (ctx) => const EventDetails()));
-              },
+              onTap: () {},
               child: const SizedBox(
                 height: 170,
                 child: Card(

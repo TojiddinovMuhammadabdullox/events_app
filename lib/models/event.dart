@@ -7,6 +7,7 @@ class Event {
   final String time;
   final String description;
   final String mediaUrl;
+  final String? location;
 
   Event({
     required this.id,
@@ -15,18 +16,25 @@ class Event {
     required this.time,
     required this.description,
     required this.mediaUrl,
+    this.location,
   });
 
   factory Event.fromDocument(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>?;
     return Event(
       id: doc.id,
-      name: doc['name'],
-      date: doc['date'],
-      time: doc['time'],
-      description: doc['description'],
-      mediaUrl: doc['mediaUrl'],
+      name: data?['name'] ?? '',
+      date: data?['date'] ?? '',
+      time: data?['time'] ?? '',
+      description: data?['description'] ?? '',
+      mediaUrl: data?['mediaUrl'] ?? '',
+      location: data != null && data.containsKey('location')
+          ? data['location']
+          : null,
     );
   }
+
+  get organizer => null;
 
   Map<String, dynamic> toMap() {
     return {
@@ -35,6 +43,7 @@ class Event {
       'time': time,
       'description': description,
       'mediaUrl': mediaUrl,
+      'location': location,
     };
   }
 }

@@ -1,6 +1,6 @@
 import 'package:events_app/providers/user_provider.dart';
 import 'package:events_app/providers/theme_provider.dart';
-import 'package:events_app/views/events_page/favorites_page.dart';
+import 'package:events_app/views/events_page/favorit_page.dart';
 import 'package:events_app/views/events_page/my_events.dart';
 import 'package:events_app/views/main.pages/profile_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -45,7 +45,7 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             trailing: const Icon(Icons.arrow_forward_ios_outlined),
             leading: const Icon(Icons.person_2_outlined),
-            title: const Text("Profil Ma'lumotlari"),
+            title: const Text("Profil ma'lumotlari"),
             onTap: () {
               Navigator.push(context,
                   CupertinoPageRoute(builder: (ctx) => const ProfilePage()));
@@ -70,7 +70,7 @@ class AppDrawer extends StatelessWidget {
                   "assets/icons/theme_mode.png",
                   width: 23,
                 ),
-                title: const Text("Tungi / kunduzgi holat"),
+                title: const Text("Tungi / Kunduzgi holat"),
               );
             },
           ),
@@ -80,7 +80,7 @@ class AppDrawer extends StatelessWidget {
             title: const Text("Sevimlilar"),
             onTap: () {
               Navigator.push(context,
-                  CupertinoPageRoute(builder: (ctx) => const FavoritesPage()));
+                  CupertinoPageRoute(builder: (ctx) => const FavoritPage()));
             },
           ),
         ],

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:events_app/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -179,8 +180,8 @@ class _ProfilePageState extends State<ProfilePage> {
                           _imageFile,
                         );
                   },
-                  child: const Text(
-                    "Saqlash",
+                  child: Text(
+                    "saqlash".tr(),
                     style: TextStyle(color: Colors.white),
                   ),
                 ),

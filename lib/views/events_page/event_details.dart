@@ -1,8 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:events_app/models/event.dart';
 
 class EventDetails extends StatelessWidget {
-  const EventDetails({super.key});
+  final Event event;
+
+  const EventDetails({super.key, required this.event});
 
   @override
   Widget build(BuildContext context) {
@@ -13,12 +17,12 @@ class EventDetails extends StatelessWidget {
           Container(
             width: double.infinity,
             height: 250,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/detail_bg.png"),
+                image: NetworkImage(event.mediaUrl),
                 fit: BoxFit.cover,
               ),
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(15),
                 bottomRight: Radius.circular(15),
               ),
@@ -45,21 +49,21 @@ class EventDetails extends StatelessWidget {
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(16.0),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Satelitte mega festival for \ndesigners",
-                  style: TextStyle(
+                  event.name,
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 24,
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 ListTile(
-                  leading: Card(
+                  leading: const Card(
                     color: Color(0xffDFEBEB),
                     child: SizedBox(
                       width: 50,
@@ -67,11 +71,11 @@ class EventDetails extends StatelessWidget {
                       child: Icon(Icons.calendar_month, size: 24),
                     ),
                   ),
-                  title: Text("Event Date"),
-                  subtitle: Text("12th December 2024"),
+                  title: const Text("eslatma_kuni").tr(),
+                  subtitle: Text(event.date),
                 ),
                 ListTile(
-                  leading: Card(
+                  leading: const Card(
                     color: Color(0xffDFEBEB),
                     child: SizedBox(
                       width: 50,
@@ -79,11 +83,11 @@ class EventDetails extends StatelessWidget {
                       child: Icon(Icons.location_on, size: 24),
                     ),
                   ),
-                  title: Text("Event Location"),
-                  subtitle: Text("New York City, NY"),
+                  title: const Text("Event Location"),
+                  subtitle: Text(event.location ?? "N/A"),
                 ),
                 ListTile(
-                  leading: Card(
+                  leading: const Card(
                     color: Color(0xffDFEBEB),
                     child: SizedBox(
                       width: 50,
@@ -91,8 +95,8 @@ class EventDetails extends StatelessWidget {
                       child: Icon(Icons.person, size: 24),
                     ),
                   ),
-                  title: Text("Organizer"),
-                  subtitle: Text("John Doe"),
+                  title: const Text("Organizer"),
+                  subtitle: Text(event.organizer ?? "N/A"),
                 ),
               ],
             ),
@@ -137,10 +141,11 @@ class EventDetails extends StatelessWidget {
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 15),
-            child: Text("Description"),
+          Padding(
+            padding: const EdgeInsets.only(left: 15),
+            child: Text(event.description),
           ),
+          
         ],
       ),
     );

@@ -62,6 +62,7 @@ dependencies:
   flutter_provider: ^2.1.0
   location: ^7.0.0
   theme_provider: ^0.6.0
+  easy_localization: ^3.0.7
   
 dev_dependencies:
   flutter_test:
@@ -90,6 +91,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/logo/
+    - assets/translations/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

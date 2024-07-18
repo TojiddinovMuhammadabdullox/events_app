@@ -1,16 +1,22 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 class SearchTextField extends StatelessWidget {
-  const SearchTextField({super.key});
+  final TextEditingController controller;
+  final VoidCallback onSearchChanged;
+  const SearchTextField(
+      {required this.controller, required this.onSearchChanged, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: TextField(
+        controller: controller,
+        onChanged: (value) => onSearchChanged,
         decoration: InputDecoration(
-          hintText: "Tadbirlarni izlash..",
+          hintText: "tadbirlarni_izlash".tr(),
           hintStyle: const TextStyle(color: Colors.grey),
           prefixIcon: const Icon(CupertinoIcons.search, size: 30),
           suffixIcon: IconButton(

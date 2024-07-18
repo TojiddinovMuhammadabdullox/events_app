@@ -12,4 +12,8 @@ class FirestoreService {
     return _db.collection('events').snapshots().map((snapshot) =>
         snapshot.docs.map((doc) => Event.fromDocument(doc)).toList());
   }
+
+  Future<void> deleteEvent(String eventId) async {
+    await _db.collection('events').doc(eventId).delete();
+  }
 }

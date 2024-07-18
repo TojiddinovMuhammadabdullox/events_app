@@ -1,10 +1,14 @@
 import 'package:events_app/models/event.dart';
+import 'package:events_app/providers/favorites_provider.dart';
 import 'package:events_app/services/firestore_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AllEventsTab extends StatelessWidget {
   final FirestoreService _firestoreService = FirestoreService();
+
+  AllEventsTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +26,8 @@ class AllEventsTab extends StatelessWidget {
         List<Event> events = snapshot.data!;
 
         return ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: events.length,
           itemBuilder: (context, index) {
             Event event = events[index];
@@ -75,13 +81,20 @@ class AllEventsTab extends StatelessWidget {
                       ],
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      CupertinoIcons.heart_circle_fill,
-                      color: Colors.grey,
-                    ),
-                  ),
+                  Consumer<FavoritesProvider>(
+                    builder: (context, favoritesProvider, child) {
+                      final isFavorit = favoritesProvider.isFavorite(event);
+                      return IconButton(
+                        onPressed: () {
+                          favoritesProvider.toggleFavorite(event);
+                        },
+                        icon: Icon(
+                          CupertinoIcons.heart_circle_fill,
+                          color: isFavorit ? Colors.red : Colors.grey,
+                        ),
+                      );
+                    },
+                  )
                 ],
               ),
             );

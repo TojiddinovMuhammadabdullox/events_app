@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProfileTf extends StatelessWidget {
   final String hintText;
-  ProfileTf({required this.hintText, super.key});
+  const ProfileTf({required this.hintText, super.key});
 
   @override
   Widget build(BuildContext context) {

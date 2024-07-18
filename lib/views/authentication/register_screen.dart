@@ -75,8 +75,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       SharedPreferences prefs =
                           await SharedPreferences.getInstance();
                       prefs.setBool('isLoggedIn', true);
-                      prefs.setString(
-                          'userEmail', user.email ?? ''); // Save email
+                      prefs.setString('userEmail', user.email ?? '');
                       Navigator.pushReplacementNamed(context, '/home');
                     }
                   }
