@@ -63,6 +63,7 @@ dependencies:
   location: ^7.0.0
   theme_provider: ^0.6.0
   easy_localization: ^3.0.7
+  modal_bottom_sheet: ^3.0.0
   
 dev_dependencies:
   flutter_test:

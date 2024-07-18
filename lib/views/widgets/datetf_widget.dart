@@ -17,7 +17,7 @@ class DateTextField extends StatelessWidget {
       readOnly: true,
       decoration: InputDecoration(
         hintText: selectedDate != null
-            ? "${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}"
+            ? "${selectedDate!.day}-${selectedDate!.month}-${selectedDate!.year}"
             : "Kuni",
         suffixIcon: IconButton(
           onPressed: () async {

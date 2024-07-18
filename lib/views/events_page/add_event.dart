@@ -31,6 +31,17 @@ class _AddEventsState extends State<AddEvents> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
 
+      if (_name == null ||
+          _selectedDate == null ||
+          _selectedTime == null ||
+          _description == null ||
+          _currentAddress.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Iltimos, barcha maydonlarni to\'ldiring.')),
+        );
+        return;
+      }
+
       String? mediaUrl;
       if (_media != null) {
         final storageRef = FirebaseStorage.instance

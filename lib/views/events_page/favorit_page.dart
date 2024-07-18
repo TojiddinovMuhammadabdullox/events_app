@@ -21,7 +21,7 @@ class FavoritPage extends StatelessWidget {
           if (favorites.isEmpty) {
             return const Center(child: Text('No favorites yet'));
           }
-
+  
           return ListView.builder(
             itemCount: favorites.length,
             itemBuilder: (context, index) {

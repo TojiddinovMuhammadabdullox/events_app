@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 class SearchTextField extends StatelessWidget {
   final TextEditingController controller;
   final VoidCallback onSearchChanged;
+
   const SearchTextField(
       {required this.controller, required this.onSearchChanged, super.key});
 
@@ -14,7 +15,7 @@ class SearchTextField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: TextField(
         controller: controller,
-        onChanged: (value) => onSearchChanged,
+        onChanged: (value) => onSearchChanged(),
         decoration: InputDecoration(
           hintText: "tadbirlarni_izlash".tr(),
           hintStyle: const TextStyle(color: Colors.grey),
