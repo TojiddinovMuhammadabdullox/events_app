@@ -6,8 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 class MediaPickerWidget extends StatefulWidget {
   final Function(File?) onMediaPicked;
 
-  const MediaPickerWidget({Key? key, required this.onMediaPicked})
-      : super(key: key);
+  const MediaPickerWidget({super.key, required this.onMediaPicked});
 
   @override
   _MediaPickerWidgetState createState() => _MediaPickerWidgetState();
