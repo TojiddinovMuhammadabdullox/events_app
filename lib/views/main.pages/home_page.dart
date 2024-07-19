@@ -92,24 +92,12 @@ class _HomePageState extends State<HomePage> {
               width: MediaQuery.of(context).size.width,
               child: const CustomCarouselSlider(),
             ),
-            StreamBuilder<List<Event>>(
-              stream: _firestoreService.getEvents(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
-                } else if (snapshot.hasError) {
-                  return const Center(child: Text('Error loading events'));
-                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return const Center(child: Text('No events found'));
-                }
-
-                List<Event> events = snapshot.data!;
-                return EventListView(
-                  events: events,
-                  firestoreService: _firestoreService,
-                );
-              },
-            ),
+            _filteredEvents.isEmpty
+                ? const Center(child: Text('No events found'))
+                : EventListView(
+                    events: _filteredEvents,
+                    firestoreService: _firestoreService,
+                  ),
           ],
         ),
       ),
