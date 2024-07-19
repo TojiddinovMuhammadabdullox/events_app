@@ -37,7 +37,7 @@ class _AddEventsState extends State<AddEvents> {
           _description == null ||
           _currentAddress.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Iltimos, barcha maydonlarni to\'ldiring.')),
+          SnackBar(content: Text('Iltimos, barcha maydonlarni toldiring.')),
         );
         return;
       }

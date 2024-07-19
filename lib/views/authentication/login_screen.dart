@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -18,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: const Text('Login'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -26,9 +28,17 @@ class _LoginPageState extends State<LoginPage> {
           key: _formKey,
           child: Column(
             children: [
+              Image.asset(
+                "assets/logo/app_logo.png",
+                width: 300,
+              ),
+              SizedBox(height: 15),
               TextFormField(
                 controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: InputDecoration(
+                    labelText: 'Email',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12))),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email';
@@ -36,9 +46,13 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
+              SizedBox(height: 15),
               TextFormField(
                 controller: _passwordController,
-                decoration: InputDecoration(labelText: 'Password'),
+                decoration: InputDecoration(
+                    labelText: 'Password',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12))),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -48,24 +62,27 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    User? user = await _authService.signInWithEmailAndPassword(
-                      _emailController.text,
-                      _passwordController.text,
-                    );
-                    if (user != null) {
-                      SharedPreferences prefs =
-                          await SharedPreferences.getInstance();
-                      prefs.setBool('isLoggedIn', true);
-                      prefs.setString(
-                          'userEmail', user.email ?? ''); // Save email
-                      Navigator.pushReplacementNamed(context, '/home');
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      User? user =
+                          await _authService.signInWithEmailAndPassword(
+                        _emailController.text,
+                        _passwordController.text,
+                      );
+                      if (user != null) {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        prefs.setBool('isLoggedIn', true);
+                        prefs.setString('userEmail', user.email ?? '');
+                        Navigator.pushReplacementNamed(context, '/home');
+                      }
                     }
-                  }
-                },
-                child: Text('Login'),
+                  },
+                  child: Text('Login'),
+                ),
               ),
               TextButton(
                 onPressed: () {

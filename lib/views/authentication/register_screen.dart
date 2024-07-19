@@ -28,9 +28,17 @@ class _RegisterPageState extends State<RegisterPage> {
           key: _formKey,
           child: Column(
             children: [
+              Image.asset(
+                "assets/logo/app_logo.png",
+                width: 300,
+              ),
+              SizedBox(height: 15),
               TextFormField(
                 controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: InputDecoration(
+                    labelText: 'Email',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12))),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email';
@@ -38,9 +46,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   return null;
                 },
               ),
+              SizedBox(height: 15),
               TextFormField(
                 controller: _passwordController,
-                decoration: InputDecoration(labelText: 'Password'),
+                decoration: InputDecoration(
+                    labelText: 'Password',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12))),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -49,9 +61,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   return null;
                 },
               ),
+              SizedBox(height: 15),
               TextFormField(
                 controller: _confirmPasswordController,
-                decoration: InputDecoration(labelText: 'Confirm Password'),
+                decoration: InputDecoration(
+                    labelText: 'Confirm Password',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12))),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -63,24 +79,27 @@ class _RegisterPageState extends State<RegisterPage> {
                 },
               ),
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    User? user =
-                        await _authService.registerWithEmailAndPassword(
-                      _emailController.text,
-                      _passwordController.text,
-                    );
-                    if (user != null) {
-                      SharedPreferences prefs =
-                          await SharedPreferences.getInstance();
-                      prefs.setBool('isLoggedIn', true);
-                      prefs.setString('userEmail', user.email ?? '');
-                      Navigator.pushReplacementNamed(context, '/home');
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      User? user =
+                          await _authService.registerWithEmailAndPassword(
+                        _emailController.text,
+                        _passwordController.text,
+                      );
+                      if (user != null) {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        prefs.setBool('isLoggedIn', true);
+                        prefs.setString('userEmail', user.email ?? '');
+                        Navigator.pushReplacementNamed(context, '/home');
+                      }
                     }
-                  }
-                },
-                child: Text('Register'),
+                  },
+                  child: Text('Register'),
+                ),
               ),
               TextButton(
                 onPressed: () {

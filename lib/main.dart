@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:events_app/providers/favorites_provider.dart';
 import 'package:events_app/providers/theme_provider.dart';
 import 'package:events_app/providers/user_provider.dart';
@@ -13,21 +12,15 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await EasyLocalization.ensureInitialized();
 
   runApp(
-    EasyLocalization(
-      supportedLocales: [Locale('en'), Locale('uz')],
-      path: 'assets/translations',
-      fallbackLocale: const Locale('uz'),
-      child: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (context) => UserProvider()),
-          ChangeNotifierProvider(create: (context) => ThemeProvider()),
-          ChangeNotifierProvider(create: (context) => FavoritesProvider()),
-        ],
-        child: const MyApp(),
-      ),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => UserProvider()),
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ChangeNotifierProvider(create: (context) => FavoritesProvider()),
+      ],
+      child: const MyApp(),
     ),
   );
 }
@@ -50,9 +43,6 @@ class MyApp extends StatelessWidget {
             '/register': (context) => RegisterPage(),
             '/home': (context) => const HomePage(),
           },
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
         );
       },
     );
