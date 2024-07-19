@@ -18,7 +18,6 @@ class EventListView extends StatelessWidget {
   });
 
   void _editEvent(BuildContext context, Event event) {
-    // Navigate to the edit screen with the event data
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => EditEventScreen(event: event),

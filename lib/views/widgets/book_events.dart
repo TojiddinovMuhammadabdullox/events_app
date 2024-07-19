@@ -10,9 +10,9 @@ class BookEvents extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
-        borderRadius: const BorderRadius.only(
+        borderRadius:  BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
@@ -31,7 +31,6 @@ class BookEvents extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              // Implement registration logic here
             },
             child: const Text('Register'),
           ),

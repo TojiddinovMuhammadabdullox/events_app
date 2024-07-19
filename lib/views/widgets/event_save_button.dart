@@ -4,7 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 class SaveButtonWidget extends StatelessWidget {
   final VoidCallback onSave;
 
-  const SaveButtonWidget({Key? key, required this.onSave}) : super(key: key);
+  const SaveButtonWidget({super.key, required this.onSave});
 
   @override
   Widget build(BuildContext context) {

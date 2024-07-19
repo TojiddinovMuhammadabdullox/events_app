@@ -8,8 +8,8 @@ class DateTextField extends StatelessWidget {
   const DateTextField({
     required this.onDateSelected,
     this.selectedDate,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
